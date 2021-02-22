@@ -37,7 +37,7 @@ const schema = yup.object().shape({
 //-----------------------------------------------
 // Request handlers
 //-----------------------------------------------
-app.post('/new', async (req, res, next) => {
+app.post('/api/new', async (req, res, next) => {
 	let { url, slug } = req.body;
 	console.log('req.body: ', req.body);
 
@@ -66,7 +66,7 @@ app.post('/new', async (req, res, next) => {
 	}
 });
 
-app.post('/ForDiscordBot', async (req, res, next) => {
+app.post('/api/new-fordiscordbot', async (req, res, next) => {
 	let { url, slug } = req.body;
 	console.log('req.body: ', req.body);
 
@@ -91,12 +91,13 @@ app.post('/ForDiscordBot', async (req, res, next) => {
 	}
 });
 
-app.get('/list', (req, res) => {
+app.get('/api/list', (req, res) => {
 	db.all(`SELECT * FROM urls`, (err, data) => {
 		if (err) console.error(err);
 
 		res.json({
-			data: data
+		  title: "DataBase",
+			urldata: data
 		});
 	});
 });
@@ -116,6 +117,23 @@ app.get('/:id', (req, res) => {
 		);
 	});
 });
+
+app.get('/api/info', (req, res) => {
+  db.get(`SELECT * FROM urls where slug='${req.query.q}'`, (err, data) => {
+		if (err) console.error(err);
+		if (!data) {
+		  res.json({
+		  url: null,
+		  clicks: null
+		});
+		}
+		else res.json({
+		  url: data.url,
+		  
+		  clicks: data.clicks
+		});
+  })
+})
 
 app.post('/*', (req, res) => {
 	res.json({ message: 'Hello, world' });

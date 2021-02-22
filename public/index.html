@@ -4,18 +4,23 @@
     <meta charset="UTF-8" />
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-<meta property="og:title" content="短縮URL - Locat.ml(β)">
+<meta property="og:title" content="6cat.ga(β)">
 <meta property="og:type" content="website">
-<meta property="og:description" content="短縮URLサービスです。注意:こちらはβ版です。サービスは予告なしに終了する場合がございます。">
-<meta property="og:url" content="https://locat.ml/">
-<meta property="og:site_name" content="Locat.ml">
-<meta property="og:image" content="https://cdn.discordapp.com/icons/706748716077547600/6549d16556ee5674fd44a65ea76812c8.png?size=1024">
-<meta name="theme-color" content="#F514EA">
-    <title>短縮URL - locat.ml(β)</title>
+<meta property="og:description" content="短縮URLサービスです。注意:β版です。サービスは予告なしに終了する場合がございます。">
+<meta property="og:url" content="https://6cat.ga/">
+<meta property="短縮URL">
+<meta property="og:image" content="https://cdn.glitch.com/9cbeb915-225e-4f98-9176-736a42339e03%2F%E7%84%A1%E9%A1%8C357_20210118215417.png?v=1610974749139">
+<meta name="theme-color" content="#fd7e00">
+    <title>6cat.ga(β)</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    
     <link rel="stylesheet" href="./assets/custom.css" />
-     <link href="https://new.ad-center.ml/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
@@ -24,28 +29,106 @@
   
   <body x-data="process()">
     <nav class="fix">
-    <div class="nav-wrapper pink">
-      <a href="#!" class="brand-logo">Locat.ml</a>
+    <div class="nav-wrapper orange">
+      <a href="#!" class="brand-logo">6cat.ga</a>
     </div>
   </nav>
   <br><br>
-    <center><h1 class="title">locat.ml(β)</h1>
+    <center><h1 class="title">6cat.ga</h1>
     <div class="subtitle">
-      短縮URLを作成して、あなたの長いURLを短縮化しましょう。このサービスは予告なく停止される場合がございますのでご了承下さい。
+      短縮URLによって、あなたのURLは短く簡潔な物になります。<br>あくまでも当サービスはβ版なのでバグが発生する場合がございます。ご了承下さい。
     </div>
+
   <div class="row">
       <div class="col s60 m12">
-      <div class="center pink lighten-3 card-panel hoverable white-text">
+      <div class="orange lighten-3 center card-panel hoverable white-text" style="border-radius: 15px 15px 15px 15px;">
+        <i class="material-icons large">description</i><br>
+        <span class="card-title center"><font size="5">現在の短縮URL数</font></span>
+        <div id="output">
+          <div class="progress">
+      <div class="indeterminate"></div>
+  </div>
+<p class="center">読み込み中です。</p>
+</div></div></div></div>
+  <script type="text/javascript">
+  const valueA = fetch("https://6cat.ga/api/list")
+            .then(response => response.json())
+            .then(data => {
+              
+    target = document.getElementById("output");
+    target.innerHTML = Object.keys(data['urldata']).length+"個の短縮URLが存在します。あなたも短縮URLを作って見ましょう。";})
+    
+    
+  </script>
+    <div class="row">
+      <div class="col s60 m12">
+      <div class="orange lighten-3 center card-panel hoverable white-text" style="border-radius: 15px 15px 15px 15px;">
+        <form name="info" onsubmit=”return false;”>
+        <i class="material-icons large">info</i><br>
+        <span class="card-title center"><font size="5">短縮URLの詳細</font></span>
+      <div id="result">入力フォームに短縮URLの言葉を入力してください。<br>(例) https://6cat.ga/locat の/locatの部分(/を除く)<br><b class="red-text">現在試験中の機能です。誤作動やバグが発生する場合がございます。</b></div>
+      <input name="id" type="text" >
+
+      </form>
+            <button class="btn orange darken-1 waves-effect" onclick="OnButtonClick()">検索</button>
+      <!-- onclick属性を付与してcheckText関数を実行する -->
+      </div></div></div>
+<script>
+  window.onload = function() {
+        var param = location.search
+        if(!param) return;
+        fetch("https://6cat.ga/api/info?q="+param.slice(4))
+            .then(response => response.json())
+            .then(data => {
+              
+            target = document.getElementById("result");
+    target.innerHTML = "<p>元URL:<a class='orange-text' href="+data.url+">"+data.url+"</a><br>クリック数:"+data.clicks+"</p>"
+})
+};
+</script>
+      <script>
+    
+      function OnButtonClick() {
+        
+      if (!document.info.id.value) {
+      target = document.getElementById("result");
+    target.innerHTML = "<p>入力フォームに短縮URLの言葉を入力してください。<br>(例) https://6cat.ga/locat の/locatの部分(/を除く)</p>"
+    return;
+          }
+          fetch("https://6cat.ga/api/info?q="+document.info.id.value)
+            .then(response => response.json())
+            .then(data => {
+              
+            target = document.getElementById("result");
+    target.innerHTML = "<p>元URL:<a class='orange-text' href="+data.url+">"+data.url+"</a><br>クリック数:"+data.clicks+"</p>"
+
+})}
+
+  
+    </script>
+  <script>
+  function Cooldown () {
+  document.getElementById('btn').disabled = true
+  setTimeout(() => {
+  document.getElementById('btn').disabled = false
+  }, 3000)
+}
+  </script>
+  <div class="row">
+      <div class="col s60 m12">
+      <div class="orange lighten-3 center card-panel hoverable white-text" style="border-radius: 15px 15px 15px 15px;">
 <i class="material-icons large">attachment</i>
-      <input type="text" placeholder="短縮したいURLを入力" x-model="url" />
+      <input type="text" placeholder="短縮するURL(http or https)" x-model="url"/>
+      <span class="helper-text" data-error="wrong" data-success="right">例:https://example.com</span>
       <br />
       <input
         type="text"
         class="form-control"
-        placeholder="短縮URLのワードを入力(任意)"
+        placeholder="短縮URLの言葉"
         x-model="slug"
-      />
-      <button class="btn purple lighten-3 waves-effect" x-on:click.prevent="shortenURL()">短縮化</button>
+      /><span class="helper-text" data-error="wrong" data-success="right">例:star</span>
+<br>
+      <button class="btn orange darken-1 waves-effect" id="btn" x-on:click.prevent="shortenURL()" onsubmit="clicked()" onclick="Cooldown()">短縮化</button>
       <div x-show="error" x-on:click=" error = ''">
         <span x-text="error" class="error"></span>❌
       </div>
@@ -54,29 +137,54 @@
         <div id="results" x-show="data['shorturl']" class="results">
   <div class="row">
       <div class="col s60 m12">
-      <div class="center pink lighten-3 card-panel hoverable white-text" >
+      <div class="orange lighten-3 center card-panel hoverable white-text" style="border-radius:15px 15px 15px 15px">
 <i class="material-icons large">verified</i>
-      <div class="label">短縮化されたURL:</div>
-      <textarea rows="1" cols="30" style="display: inline-block;" x-text="data.shorturl"></textarea>
+      <div class="label">成功しました。<br>短縮化されたURL:</div>
+      <textarea rows="1" cols="30" style="display: inline-block;" x-text="data.shorturl" readonly></textarea>
       
       <br><br>
 
-<button class="btn purple lighten-3 waves-effect" onclick = "copy()">
+<button class="btn orange lighten-3 waves-effect" onclick = "copy()">
 コピー
 </button>
     </div>
     </div>
     </div>
     </div>
-    <footer class="page-footer pink">
+    <footer class="page-footer orange">
           <div class="footer-copyright">
       <div class="container">
-      <center>©<a class="pink-text text-lighten-3" href="#">Lovely Cat Project</a></center>
+      <center>©<a class="orange-text text-lighten-3" href="#">Lovely Cat Project</a></center>
       </div>
     </div>
       </footer>
 </center>
     <script>
+function btnDisable(){ //①
+
+  document.getElementById("btn").disabled = true;
+
+  clearInterval(statusDis);
+
+}
+function btnAble(){  //②
+
+  document.getElementById("btn").disabled = false;
+
+  clearInterval(statusAble);
+
+}
+
+
+
+function clicked(){ //① + ②
+
+  statusDis  = setInterval(btnDisable , 1); //ボタンを押した直後に①を呼び出し
+
+  statusAble = setInterval(btnAble , 3000); //ボタンを押して三秒後に②を呼び出し
+
+}
+
       function process() {
         return {
           error: "",
@@ -86,7 +194,7 @@
           shortenURL: async function () {
             try {
               console.log("this.url", this.url);
-              const result = await fetch(`/new/`, {
+              const result = await fetch(`/api/new/`, {
                 method: "POST",
 
                 headers: {
@@ -136,8 +244,19 @@ function stopload(){
     $('.loading').delay(1000).fadeOut(700);
 }
 setTimeout('stopload()',10000);
+
+const value = fetch("https://6cat.ga/api/list")
+            .then(response => response.json())
+            .then(data => {
+message.channel.send(Object.keys(data['urldata']).length,)
+})
+        window.onload = function () {
+      target = document.getElementById("output");
+      target.innerHTML = "JavaScriptが実行されました。";
+    }
+    function info() {
+      
+    }
     </script>
-      <script src="https://new.ad-center.ml/js/materialize.js"></script>
-  <script src="https://new.ad-center.ml/js/init.js"></script>
   </body>
 </html>

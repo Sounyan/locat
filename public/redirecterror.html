@@ -1,75 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-<meta property="og:title" content="短縮URL - Locat.ml(β)">
+<meta property="og:title" content="6cat.ga(β)">
 <meta property="og:type" content="website">
-<meta property="og:description" content="短縮URLサービスです。注意:こちらはβ版です。サービスは予告なしに終了する場合がございます。">
-<meta property="og:url" content="https://locat.ml/">
-<meta property="og:site_name" content="Locat.ml">
-<meta property="og:image" content="https://cdn.discordapp.com/icons/706748716077547600/6549d16556ee5674fd44a65ea76812c8.png?size=1024">
-<meta name="theme-color" content="#F514EA">
-    <title>短縮URL - locat.ml(β)</title>
+<meta property="og:description" content="このリダイレクトリンクは無効です。存在しない、削除された場合があります。不具合の場合はサポートサーバーへ。">
+<meta property="og:url" content="https://6cat.ga/">
+<meta property="短縮URL">
+<meta property="og:image" content="https://cdn.glitch.com/9cbeb915-225e-4f98-9176-736a42339e03%2F%E7%84%A1%E9%A1%8C357_20210118215417.png?v=1610974749139">
+<meta name="theme-color" content="#fd7e00">
+    <title>6cat.ga(β)</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    
     <link rel="stylesheet" href="./assets/custom.css" />
-     <link href="https://new.ad-center.ml/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
   </head>
-  
   <body>
     <nav class="fix">
-    <div class="nav-wrapper pink">
-      <a href="#!" class="brand-logo">Locat.ml</a>
+    <div class="nav-wrapper orange">
+      <a href="#!" class="brand-logo">6cat.ga</a>
     </div>
   </nav>
   <br><br>
-    <center><h1 class="title">locat.ml(β)</h1>
-    <div class="subtitle">
-      短縮URLを作成して、あなたの長いURLを短縮化しましょう。このサービスは予告なく停止される場合がございますのでご了承下さい。
-    </div>
-  <div class="row">
+      <center><h1 class="title"><font size="5">リダイレクトエラー</font></h1></center>
+      <div class="row">
       <div class="col s60 m12">
-      <div class="center pink lighten-3 card-panel hoverable white-text">
-<i class="material-icons large">attachment</i>
-      <input type="text" placeholder="短縮したいURLを入力" x-model="url" />
-      <br />
-      <input
-        type="text"
-        class="form-control"
-        placeholder="短縮URLのワードを入力(任意)"
-        x-model="slug"
-      />
-      <button class="btn purple lighten-3 waves-effect" x-on:click.prevent="shortenURL()">短縮化</button>
-      <div x-show="error" x-on:click=" error = ''">
-        <span x-text="error" class="error"></span>❌
-      </div>
-    
-    </div></div></div>
-        <div id="results" x-show="data['shorturl']" class="results">
-  <div class="row">
-      <div class="col s60 m12">
-      <div class="center pink lighten-3 card-panel hoverable white-text" >
-<i class="material-icons large">verified</i>
-      <div class="label">短縮化されたURL:</div>
-      <textarea rows="1" cols="30" style="display: inline-block;" x-text="data.shorturl"></textarea>
-      
-      <br><br>
-
-<button class="btn purple lighten-3 waves-effect" onclick = "copy()">
-コピー
-</button>
-    </div>
-    </div>
-    </div>
-    </div>
+      <div class="center orange  card-panel hoverable white-text" >
+<i class="material-icons large">error</i>
+<p>おっと、このリンクはリダイレクトリンクではないようです。存在しない、または削除された場合がございます。</p>
+<br>
+<center><a href="/" class="btn waves-effect waves-light green">トップページ</a>
+<a href="/disco" class="btn waves-effect waves-light green">公式Discordサーバー</a>
 </center>
-      <script src="https://new.ad-center.ml/js/materialize.js"></script>
-  <script src="https://new.ad-center.ml/js/init.js"></script>
+    </div>
+    </div>
+    </div>
+    <footer class="page-footer orange">
+          <div class="footer-copyright">
+      <div class="container">
+      <center>©<a class="orange-text text-lighten-3" href="#">Lovely Cat Project</a></center>
+      </div>
+    </div>
+      </footer>
   </body>
 </html>
